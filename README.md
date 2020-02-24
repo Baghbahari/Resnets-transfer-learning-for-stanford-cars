@@ -28,7 +28,9 @@ python3 transfer_learning_stanford_cars.py resnext50_32x4d 25 0.001 ./car_data
 ## Results
 First, we compare the best prediction per each models:
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| Model  | Best test accuracy | Training time |
+| ------------- | ------------- | ------------- |
+| resnet18  | Content Cell  | |
+| resnet50  | Content Cell  | |
+| wide_resnet50_2 | | |
+| resnext50_32x4d | | |
