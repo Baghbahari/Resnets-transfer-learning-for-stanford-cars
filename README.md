@@ -65,9 +65,17 @@ The lost profile:
 
 The accuracy profile: 
 
-![Training and test accuracy](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_accresnet50.png)
+![Training and test accuracy](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_accwide_resnet50_2.png)
 
 
 4. Resnext50_32x4d
+
+The lost profile: 
+
+![Training and test loss](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_losswide_resnet50_2.png)
+
+The accuracy profile: 
+
+![Training and test accuracy](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_accwide_resnet50_2.png)
 
 
