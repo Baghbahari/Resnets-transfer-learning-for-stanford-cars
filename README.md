@@ -26,7 +26,7 @@ For example, you can issue the following command to retrain resnext50_32x4d:
 python3 transfer_learning_stanford_cars.py resnext50_32x4d 25 0.001 ./car_data
 
 ## Results
-First, we compare the best prediction per each models:
+We compare the best prediction per each models as well as training time:
 
 | Model  | Best test accuracy | Training time |
 | ------------- | ------------- | ------------- |
@@ -34,3 +34,5 @@ First, we compare the best prediction per each models:
 | resnet50  | 0.856610  | 45m 12s |
 | wide_resnet50_2 | 0.878995 | 72m 15 |
 | resnext50_32x4d | 0.885959 | 87m 11s |
+
+Resnet18 has the loweset prediction accuracy and resnext50_32x4d has the best performance in prediction. However, this is at the cost of ~3.35 times longer training excution.
