@@ -21,7 +21,7 @@ Resnet18 is a light model with the training completed in 26m 3s and it is suitab
 
 python3 transfer_learning_stanford_cars.py model_name number of epochs learning_rate images_dir
 
-For example, the following command is issued to retrain resnext50_32x4d:
+For example, the following command is issued to retrain resnext50_32x4d with the train and test folde inside car_data folde in the same directory:
 
 python3 transfer_learning_stanford_cars.py resnext50_32x4d 25 0.001 ./car_data
 
