@@ -1,7 +1,7 @@
 # Resnets transfer learning for Stanford car classification
 Stanford cars classification by resnet models
 
-This repository is the implementation of Resnet models (resnet18, resnet50, wide_resnet50_2 and resnext50_32x4d) on Standford cars classification task by pytorch.
+This repository is the implementation of Resnet models (resnet18, resnet50, wide_resnet50_2 and resnext50_32x4d) to predict the class model of a car from Standford cars dataset by pytorch.
 
 ##### Table of Contents  
 [Overview](#headers)  
