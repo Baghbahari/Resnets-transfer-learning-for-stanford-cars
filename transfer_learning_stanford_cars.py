@@ -17,48 +17,50 @@ if len(sys.argv) < 2:
     print('Running with default resnet18 model for 25 epochs and learning_rate = 0.001')
     model_name = 'resnet18'
     n_epochs = 25
+    data_dir = './car_data'
 else:
     model_name = sys.argv[1]
     n_epochs = int(sys.argv[2])
     learning_rate = sys.argv[3]
+    data_dir = sys.argv[4]
     print('Running '+model_name+' model, epochs = '+str(n_epochs)+', learning_rate = '+str(learning_rate))
 
 
-plt.ion()   # interactive mode
+#plt.ion()   # interactive mode
+
+
+train_loss = []
+train_acc = []
+test_loss = []
+test_acc = []
 
 # Data augmentation and normalization for training
 # Just normalization for validation
-train_loss = []
-train_acc = []
-val_loss = []
-val_acc = []
-
 data_transforms = {
     'train': transforms.Compose([
-        transforms.RandomResizedCrop(299),
+        transforms.RandomResizedCrop(224),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ]),
-    'val': transforms.Compose([
-        transforms.Resize(299),
-        transforms.CenterCrop(299),
+    'test': transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ]),
 }
 
-data_dir = './car_data'#'data/hymenoptera_data'
 image_datasets = {x: datasets.ImageFolder(os.path.join(data_dir, x),
                                           data_transforms[x])
-                  for x in ['train', 'val']}
+                  for x in ['train', 'test']}
 dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=4,
                                              shuffle=True, num_workers=4)
-              for x in ['train', 'val']}
-dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'val']}
+              for x in ['train', 'test']}
+dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'test']}
 class_names = image_datasets['train'].classes
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:3" if torch.cuda.is_available() else "cpu")
 
 
 def imshow(inp, title=None):
@@ -71,7 +73,7 @@ def imshow(inp, title=None):
     plt.imshow(inp)
     if title is not None:
         plt.title(title)
-    plt.pause(0.001)  # pause a bit so that plots are updated
+    #plt.pause(0.001)  # pause a bit so that plots are updated
 
 # Get a batch of training data
 inputs, classes = next(iter(dataloaders['train']))
@@ -92,7 +94,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs):
         print('-' * 10)
 
         # Each epoch has a training and validation phase
-        for phase in ['train', 'val']:
+        for phase in ['train', 'test']:
             if phase == 'train':
                 model.train()  # Set model to training mode
             else:
@@ -137,10 +139,10 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs):
                 train_loss.append(epoch_loss)
                 train_acc.append(epoch_acc.item())
             else:
-                val_loss.append(epoch_loss)
-                val_acc.append(epoch_acc.item())
+                test_loss.append(epoch_loss)
+                test_acc.append(epoch_acc.item())
             # deep copy the model
-            if phase == 'val' and epoch_acc > best_acc:
+            if phase == 'test' and epoch_acc > best_acc:
                 best_acc = epoch_acc
                 best_model_wts = copy.deepcopy(model.state_dict())
 
@@ -162,7 +164,7 @@ def visualize_model(model, num_images=6):
     fig = plt.figure()
 
     with torch.no_grad():
-        for i, (inputs, labels) in enumerate(dataloaders['val']):
+        for i, (inputs, labels) in enumerate(dataloaders['test']):
             inputs = inputs.to(device)
             labels = labels.to(device)
 
@@ -187,7 +189,7 @@ elif model_name == 'resnet50':
     model_ft = models.resnet50(pretrained=True)
 elif model_name == 'wide_resnet50_2':
     model_ft = models.wide_resnet50_2(pretrained=True)
-elif model_name == 'resnext50':
+elif model_name == 'resnext50_32x4d':
     model_ft = models.resnext50_32x4d(pretrained=True)
 else:
     print('Enter the resnet model for training')
@@ -210,22 +212,17 @@ exp_lr_scheduler = lr_scheduler.StepLR(optimizer_ft, step_size=7, gamma=0.1)
 model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
                        num_epochs = n_epochs)
 
-plt.figure()
 visualize_model(model_ft)
 plt.savefig('prediction_'+model_name+'.png')
 
-results = [train_acc, val_acc, train_loss, val_loss]
-lbls = ['train_acc', 'val_acc', 'train_loss', 'val_loss']
+results = [train_acc, test_acc, train_loss, test_loss]
+lbls = ['train_acc', 'test_acc', 'train_loss', 'test_loss']
 color = ['r','b']
-for i in range(len(results)):
-    if i%2==0:
-        plt.figure()
-    if i < 2:
-        plt.title('Training and validation accuracy')
-        plt.ylabel('accuracy')
-    else:
-        plt.title('Training and validation loss')
-        plt.ylabel('loss')
+
+plt.figure()
+for i in range(2):
+    plt.title('Training and test accuracy')
+    plt.ylabel('accuracy')
     plt.ticklabel_format(style='plain', axis='x', useOffset=False)
     plt.plot(results[i], color[i%2], label=lbls[i])
     plt.gca().xaxis.set_major_locator(mticker.MultipleLocator(1))
@@ -233,4 +230,17 @@ for i in range(len(results)):
     plt.legend()
     plt.grid(True)
     plt.savefig(lbls[i]+model_name+'.png')
-plt.show()
+
+plt.figure()
+for i in range(2,4):
+    plt.title('Training and test loss')
+    plt.ylabel('loss')
+    plt.ticklabel_format(style='plain', axis='x', useOffset=False)
+    plt.plot(results[i], color[i%2], label=lbls[i])
+    plt.gca().xaxis.set_major_locator(mticker.MultipleLocator(1))
+    plt.xlabel("epochs")
+    plt.legend()
+    plt.grid(True)
+    plt.savefig(lbls[i]+model_name+'.png')
+
+plt.pause(0.01)
