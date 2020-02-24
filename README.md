@@ -43,7 +43,7 @@ For resnet18, the network training is harder after 14 epochs:
 
 ![Training and test accuracy](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_lossresnet18.png)
 
-The best accuracy 
+The accuracy follows the followin gtren over epochs:
 
 ![Training and test accuracy](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_accresnet18.png)
 
