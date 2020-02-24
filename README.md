@@ -78,4 +78,9 @@ The accuracy profile:
 
 ![Training and test accuracy](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_accresneXt50.png)
 
+Now, we can compare the accuracy profile for each model:
+1. Train accuracy:
+
+2. Test accuracy:
+
 
