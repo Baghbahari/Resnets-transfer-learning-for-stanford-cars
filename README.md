@@ -15,7 +15,7 @@ Implementation is on a local machine with 12GB NVIDIA Titan Xp, Intel(R) Core(TM
 The data set is downloaded from Kaggle with class names (https://www.kaggle.com/jutrera/stanford-car-dataset-by-classes-folder/download). The data path can be defined for python code. Data is normalized and augmented randomly to provide a rich dataset for trainig. The architectures is trained and evaluated with squared images (224x224).
 
 ## Methods
-All resnet models are trained in a whole network fine tuning mode using pretrained models in pytorch. The output layer is added to predict 196 classes. The optimization is SGD with momentum and the learning rate decays by a factor of 0.1 every 7 epochs. The defaults learning rate is 0.001 and the number of epochs is 25. They can be changed through the python arg as well.
+All resnet models are trained in a whole network fine tuning mode using pretrained models in pytorch. The output layer is added to predict 196 classes. The optimization is SGD with momentum and the learning rate decays by a factor of 0.1 every 7 epochs. The defaults learning rate is 0.001 and the number of epochs is 25. They can be changed through the python args.
 
 Resnet18 is a light model with the training completed in 26m 3s and it is suitable to monitor the performance by fine tuning the parameters. To run the model, the following command is excuted in the clone direcoty: 
 
