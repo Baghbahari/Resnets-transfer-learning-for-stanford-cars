@@ -30,7 +30,7 @@ First, we compare the best prediction per each models:
 
 | Model  | Best test accuracy | Training time |
 | ------------- | ------------- | ------------- |
-| resnet18  | Content Cell  | |
-| resnet50  | Content Cell  | |
-| wide_resnet50_2 | | |
-| resnext50_32x4d | | |
+| resnet18  |  0.822161 | 26m 3s |
+| resnet50  | 0.856610  | 45m 12s |
+| wide_resnet50_2 | 0.878995 | 72m 15 |
+| resnext50_32x4d | 0.885959 | 87m 11s |
