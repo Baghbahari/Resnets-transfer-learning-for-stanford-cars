@@ -37,7 +37,8 @@ We compare the best prediction per each models as well as training time:
 
 Resnet18 has the loweset prediction accuracy and resnext50_32x4d has the best performance in prediction. However, that comes with the expense of ~3.35 times longer training time.
 The training and test during network training is visualized as follow:
-1. Resnet18
+1. Resnet18:
+![training and test accuracy](link-to-image)
 2. Resnet50
 3. Wide_resnet50_2
 4. Resnext50_32x4d
