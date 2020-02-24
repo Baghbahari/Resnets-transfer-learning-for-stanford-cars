@@ -51,7 +51,7 @@ The accuracy follows the followin gtren over epochs:
 
 Training after 
 
-![Training and test accuracy](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_accresnet18.png)
+![Training and test accuracy](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_lossresnet50.png)
 
 3. Wide_resnet50_2
 
