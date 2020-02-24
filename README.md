@@ -17,6 +17,6 @@ The data set can be downloaded fron consist Kaggle with class names (https://www
 ## Methods
 All resnet models are trained in a whole network fine tuning mode using pretrained models in pytorch. The output layer is added to predict 196 classes. The optimization is SGD with momentum and the learning rate decays by a factor of 0.1 every 7 epochs. The defaults learning rate is 0.001 and the number of epochs is 25. They can be changed through the python arg as well.
 
-Resnet18 is a light model with the training completed in 26m 3s. So, it is suitable to monitor the performance by fine tuning the parameters. 
+Resnet18 is a light model with the training completed in 26m 3s and it is suitable to monitor the performance by fine tuning the parameters. 
 
-## REsults
+## Results
