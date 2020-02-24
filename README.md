@@ -8,4 +8,5 @@ This repository is the implementation of Resnet models (resnet18, resnet50, wide
 [Methods](#methods)  
 [Results](#results)     
 <a name="headers"/>
-## Headers
+
+## Overview
