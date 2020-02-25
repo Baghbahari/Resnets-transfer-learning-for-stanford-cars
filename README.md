@@ -36,7 +36,7 @@ We compare the best prediction per each models as well as training time:
 | resnext50_32x4d | 0.885959 | 87m 11s |
 
 Resnet18 has the lowest prediction accuracy and resnext50_32x4d has the best performance in prediction. However, that comes with the expense of ~3.35 times longer training time.
-The training and test during network training are visualized as follow:
+The training and test loss and accuracy during network training are visualized as follow:
 1. Resnet18:
 
 The network training is harder after 14 epochs, The lost profile can be seen as follow:
