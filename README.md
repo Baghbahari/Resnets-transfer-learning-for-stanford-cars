@@ -39,7 +39,7 @@ Resnet18 has the lowest prediction accuracy and resnext50_32x4d has the best per
 The training and test loss and accuracy during network training are visualized as follow:
 1. Resnet18:
 
-The network training is harder after 14 epochs, The lost profile can be seen as follow:
+The network training is harder after 14 epochs. The loss profile can be seen as follow:
 
 ![Training and test loss](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_lossresnet18.png)
 
@@ -49,7 +49,7 @@ The accuracy follows the following trend over epochs:
 
 2. Resnet50
 
-The lost profile: 
+The loss profile: 
 
 ![Training and test loss](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_lossresnet50.png)
 
@@ -59,7 +59,7 @@ The accuracy profile:
 
 3. Wide_resnet50_2
 
-The lost profile: 
+The loss profile: 
 
 ![Training and test loss](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_losswide_resnet50_2.png)
 
@@ -70,7 +70,7 @@ The accuracy profile:
 
 4. Resnext50_32x4d
 
-The lost profile: 
+The loss profile: 
 
 ![Training and test loss](https://github.com/Baghbahari/Resnets-transfer-learning-for-stanford-cars/blob/master/test_lossresneXt50.png)
 
